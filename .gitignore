@@ -1,0 +1,5 @@
+*.o
+*.asm
+*.out
+.vscode/*
+bin/*
