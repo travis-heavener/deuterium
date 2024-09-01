@@ -21,9 +21,9 @@ enum TokenType {
     LIT_CHAR, // ex. 'a', 'f'
     LIT_STR, // ex. "Hello World"
     COMMENT, // #
+    DOT, COMMA, // . and ,
 
     // operators
-    OP_DOT, OP_COMMA, // ., ,
     OP_LT, OP_LTE, // <, <=
     OP_GT, OP_GTE, // >, >=
     OP_LSHIFT, OP_RSHIFT, // <<, >>
@@ -40,11 +40,30 @@ enum TokenType {
     ASSIGN_BIT_OR, ASSIGN_BIT_AND, ASSIGN_BIT_NOT, ASSIGN_BIT_XOR, // |=, &=, ~=, ^=
 };
 
+typedef unsigned long long trace;
+typedef const trace c_trace;
+
+struct ErrInfo {
+    trace line; // stack trace
+    trace col; // stack trace
+    int fileIndex;
+};
+
 struct Token {
     TokenType type;
     std::string raw;
+    ErrInfo err;
 };
 
-void tokenize(const std::string&, std::vector<Token>&);
+void tokenize(const std::string&, std::vector<Token>&, const trace, const int);
+
+/********* token helper methods *********/
+
+bool isTokenPrimitiveType(const TokenType);
+bool isTokenUnaryOp(const TokenType);
+bool isTokenBinaryOp(const TokenType);
+bool isTokenLiteral(const TokenType);
+bool isTokenCompOp(const TokenType);
+bool isTokenAssignOp(const TokenType);
 
 #endif

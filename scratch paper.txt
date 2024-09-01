@@ -1,0 +1,10 @@
+WHILE: followed by (, ops/literals, ), {, ..., }
+FOR: followed by (, ops/literals, ;, ops/literals, ;, ops/literals, ), {, ..., }
+IF: followed by (, ops/literals, ), {, ..., }
+ELIF: preceeded by IF/ELIF, (, ops/literals, ), {, ..., }
+ELSE: preceeded by IF/ELIF, {, ..., }
+RETURN: followed by ops/literals, ;
+FUNCTION: type, identifier name, (, identifier name, comma, ..., ), {, ..., }
+DECLARATION: type, identifier name, =, ops/literals, ;
+
+PREPROCESSOR MACROS: when tokenizing, replace all identifiers that match a token specified by #define with the resulting value (prevent keywords but that's it)
